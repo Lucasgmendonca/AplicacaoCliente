@@ -33,7 +33,7 @@ public class Veiculo {
     private double distanciaPercorridaLida;
     private int respectivoIntervaloLido;
     private int intervaloTempoLocalizacoesLido;
-    private int numeroIdentificacaoLido;
+    private String numeroIdentificacaoLido;
     private String dataHoraInicioLida;
     private String dataHoraFimLida;
     private String descricaoCargaLida;
@@ -64,7 +64,7 @@ public class Veiculo {
         this.distanciaPercorridaLida = 0;
         this.respectivoIntervaloLido = 0;
         this.intervaloTempoLocalizacoesLido = 0;
-        this.numeroIdentificacaoLido = 0;
+        this.numeroIdentificacaoLido = null;
         this.dataHoraInicioLida = null;
         this.dataHoraFimLida = null;
         this.descricaoCargaLida = null;
@@ -189,7 +189,7 @@ public class Veiculo {
      *
      * @return o número de identificação do serviço de transporte.
      */
-    public int getNumeroIdentificacaoLido() {
+    public String getNumeroIdentificacaoLido() {
         return numeroIdentificacaoLido;
     }
 
@@ -268,7 +268,7 @@ public class Veiculo {
         this.intervaloTempoLocalizacoesLido = intervaloTempoLocalizacoesLido;
     }
 
-    public void setNumeroIdentificacaoLido(int numeroIdentificacaoLido) {
+    public void setNumeroIdentificacaoLido(String numeroIdentificacaoLido) {
         this.numeroIdentificacaoLido = numeroIdentificacaoLido;
     }
 
@@ -344,7 +344,7 @@ public class Veiculo {
                     velocidadeRecomendada = calculoVelocidadeReconciliacao();
 
                     // Inicia a thread para buscar os dados do JSON criptografado e exibi-los na interface de usuário
-                    ServicoTransporte servicoTransporteThread = new ServicoTransporte(this, 0,null,null);
+                    ServicoTransporte servicoTransporteThread = new ServicoTransporte(this, null,null,null);
                     servicoTransporteThread.start();
 
                     constIntervaloTempoLocalizacoes = getIntervaloTempoLocalizacoes();

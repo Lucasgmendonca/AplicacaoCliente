@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
             double velocidadeMediaParcialLida = veiculo.getVelocidadeMediaParcialLida();
             double distanciaPercorridaLida = veiculo.getDistanciaPercorridaLida();
             double velocidadeRecomendada2 = veiculo.getVelocidadeRecomendadaServico();
-            int numeroIdentificacaoLido = veiculo.getNumeroIdentificacaoLido();
+            String numeroIdentificacaoLido = veiculo.getNumeroIdentificacaoLido();
             String dataHoraInicioLida = veiculo.getDataHoraInicioLida();
             String dataHoraFimLida = veiculo.getDataHoraFimLida();
             String descricaoCargaLida = veiculo.getDescricaoCargaLida();

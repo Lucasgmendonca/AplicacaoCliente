@@ -17,7 +17,7 @@ import java.util.concurrent.Semaphore;
  */
 public class ServicoTransporte extends Thread {
 
-    private int numeroIdentificacao;
+    private String numeroIdentificacao;
     private String dataHoraInicio;
     private String dataHoraFim;
     private List<Carga> cargas;
@@ -34,7 +34,7 @@ public class ServicoTransporte extends Thread {
      * @param dataHoraInicio A data e hora de início do serviço de transporte.
      * @param dataHoraFim A data e hora de fim do serviço de transporte.
      */
-    public ServicoTransporte(Veiculo veiculo, int numeroIdentificacao, String dataHoraInicio, String dataHoraFim) {
+    public ServicoTransporte(Veiculo veiculo, String numeroIdentificacao, String dataHoraInicio, String dataHoraFim) {
         this.numeroIdentificacao = numeroIdentificacao;
         this.dataHoraInicio = dataHoraInicio;
         this.dataHoraFim = dataHoraFim;
@@ -49,7 +49,7 @@ public class ServicoTransporte extends Thread {
      *
      * @return O número de identificação do serviço de transporte.
      */
-    public int getNumeroIdentificacao() {
+    public String getNumeroIdentificacao() {
         return numeroIdentificacao;
     }
 
@@ -109,7 +109,7 @@ public class ServicoTransporte extends Thread {
                         // Processa os dados do JSON e atualiza o objeto Veiculo
                         veiculo.setVelocidadeMediaParcialLida(result.getDouble("velocidadeMediaParcial"));
                         veiculo.setDistanciaPercorridaLida(result.getDouble("distanciaPercorrida"));
-                        veiculo.setNumeroIdentificacaoLido(result.getInt("numeroIdentificacao"));
+                        veiculo.setNumeroIdentificacaoLido(result.getString("numeroIdentificacao"));
                         veiculo.setDataHoraInicioLida(result.getString("dataHoraInicio"));
                         veiculo.setDataHoraFimLida(result.getString("dataHoraFim"));
                         veiculo.setDescricaoCargaLida(result.getString("descricaoCarga"));
