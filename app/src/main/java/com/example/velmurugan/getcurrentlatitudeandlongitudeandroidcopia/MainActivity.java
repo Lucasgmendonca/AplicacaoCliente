@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        exibirLayoutParaInserirDados();
 
         FirebaseApp.initializeApp(this); // Inicializa o Firebase
 
@@ -135,6 +138,41 @@ public class MainActivity extends AppCompatActivity {
 
         semaphore = new Semaphore(1); // Inicializa o semáforo com 1 permissão
         locationThread = new LocationThread(this, semaphore); // Inicializa a classe LocationThread para obter atualizações de localização em uma thread separada
+    }
+
+    // Método para exibir o novo layout para a entrada de dados da nova carga
+    private void exibirLayoutParaInserirDados() {
+        // Infla o layout personalizado
+        View novoLayoutView = getLayoutInflater().inflate(R.layout.layout_verifica, null);
+
+        EditText etCodigoAcesso= novoLayoutView.findViewById(R.id.etCodigoAcesso);
+
+        // Cria um AlertDialog personalizado
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(novoLayoutView);
+        AlertDialog dialog = builder.create();
+
+        // Define o comportamento do botão de confirmação
+        Button btnConfirmar = novoLayoutView.findViewById(R.id.btnConfirmar);
+        btnConfirmar.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+                // Aqui, você pode pegar a entrada do usuário e criar uma nova instância de Carga
+                String codigoAcesso = etCodigoAcesso.getText().toString();
+
+                // Verifica se o código de acesso é igual ao número de identificação lido do veículo
+                if (codigoAcesso.equals(veiculo.getNumeroIdentificacaoLido())) {
+                } else {
+                    exibirLayoutParaInserirDados();
+                }
+
+                // Feche o AlertDialog
+                dialog.dismiss();
+            }
+        });
+        // Exiba o AlertDialog
+        dialog.show();
     }
 
     /**
