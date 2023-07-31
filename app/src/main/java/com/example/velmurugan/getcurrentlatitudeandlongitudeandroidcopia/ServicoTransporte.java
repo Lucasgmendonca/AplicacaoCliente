@@ -120,15 +120,15 @@ public class ServicoTransporte extends Thread {
                         veiculo.setVelocidadeRecomendada2(velocidadeRecomendada2);
 
                         // Exibindo as informações para verificação
-                        System.out.println("Velocidade Média Parcial Lida: " + veiculo.getVelocidadeMediaParcialLida());
-                        System.out.println("Distância Percorrida Lida: " + veiculo.getDistanciaPercorridaLida());
-                        System.out.println("Respectivo Intervalo: " + veiculo.getRespectivoIntervaloLido());
-                        System.out.println("Intervalo Localizações: " + veiculo.getIntervaloTempoLocalizacoesLido());
-                        System.out.println("Número de Identificação Lido: " + veiculo.getNumeroIdentificacaoLido());
-                        System.out.println("Data e Hora de Início Lidas: " + veiculo.getDataHoraInicioLida());
-                        System.out.println("Data e Hora de Fim Lidas: " + veiculo.getDataHoraFimLida());
-                        System.out.println("Descrição da Carga Lida: " + veiculo.getDescricaoCargaLida());
-                        System.out.println("Nome do Motorista Lido: " + veiculo.getNomeMotoristaLido());
+                        //System.out.println("Velocidade Média Parcial Lida: " + veiculo.getVelocidadeMediaParcialLida());
+                        //System.out.println("Distância Percorrida Lida: " + veiculo.getDistanciaPercorridaLida());
+                        //System.out.println("Respectivo Intervalo: " + veiculo.getRespectivoIntervaloLido());
+                        //System.out.println("Intervalo Localizações: " + veiculo.getIntervaloTempoLocalizacoesLido());
+                        //System.out.println("Número de Identificação Lido: " + veiculo.getNumeroIdentificacaoLido());
+                        //System.out.println("Data e Hora de Início Lidas: " + veiculo.getDataHoraInicioLida());
+                        //System.out.println("Data e Hora de Fim Lidas: " + veiculo.getDataHoraFimLida());
+                        //System.out.println("Descrição da Carga Lida: " + veiculo.getDescricaoCargaLida());
+                        //System.out.println("Nome do Motorista Lido: " + veiculo.getNomeMotoristaLido());
 
                         semaphore.release(); // Libera a permissão do semáforo
                     } catch (JSONException e) {
