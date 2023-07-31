@@ -17,6 +17,9 @@ import androidx.core.content.ContextCompat;
 import com.example.velmurugan.getcurrentlatitudeandlongitudeandroid.R;
 import com.google.firebase.FirebaseApp;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.Semaphore;
 
 /**
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
      * Método chamado quando a Activity é criada. Ele é responsável por configurar a interface do usuário,
      * inicializar componentes, solicitar permissão de localização e iniciar a thread de atualização de localização.
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +64,49 @@ public class MainActivity extends AppCompatActivity {
         tvDescricaoCargaLida = findViewById(R.id.descricaoCargaLida);
         tvNomeMotoristaLido = findViewById(R.id.nomeMotoristaLido);
 
+        GpsTracker gpsTracker = new GpsTracker(MainActivity.this);
+        JSONLeitor jsonLeitor = new JSONLeitor(new JSONLeitor.JSONLeitorCallback() {
+            @Override
+            public void onResult(JSONObject result) {
+                // Process the JSON data here if needed
+                try {
+                    // Get the required data from the JSON result and set it in the Veiculo instance
+                    // For example:
+                    String numeroIdentificacaoLido = result.getString("numeroIdentificacao");
+                    String dataHoraInicioLida = result.getString("dataHoraInicio");
+                    String dataHoraFimLida = result.getString("dataHoraFim");
+                    String descricaoCargaLida = result.getString("descricaoCarga");
+                    String nomeMotoristaLido = result.getString("nomeMotorista");
+
+                    // Initialize the Veiculo instance with the obtained data
+                    veiculo = new Veiculo(gpsTracker);
+                    veiculo.setNumeroIdentificacaoLido(numeroIdentificacaoLido);
+                    veiculo.setDataHoraInicioLida(dataHoraInicioLida);
+                    veiculo.setDataHoraFimLida(dataHoraFimLida);
+                    veiculo.setDescricaoCargaLida(descricaoCargaLida);
+                    veiculo.setNomeMotoristaLido(nomeMotoristaLido);
+
+                    // Set the TextViews with the obtained data
+                    tvNumeroIdentificacaoLido.setText(numeroIdentificacaoLido);
+                    tvDataHoraInicioLida.setText(dataHoraInicioLida);
+                    tvDataHoraFimLida.setText(dataHoraFimLida);
+                    tvDescricaoCargaLida.setText(descricaoCargaLida);
+                    tvNomeMotoristaLido.setText(nomeMotoristaLido);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Call lerDados to read the data once during initialization
+        jsonLeitor.lerDados();
+
         // Solicita permissão de localização
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -74,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 percursoIniciado = true; // Define percursoIniciado como true para iniciar o percurso
+                veiculo.setTempoDeslocamento(0);
             }
         });
 

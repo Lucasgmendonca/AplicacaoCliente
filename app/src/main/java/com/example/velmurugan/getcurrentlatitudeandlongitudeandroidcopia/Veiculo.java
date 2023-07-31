@@ -60,15 +60,15 @@ public class Veiculo {
         this.tempoParaDestinoFinal = TEMPO_PARA_DESTINO_FINAL;
         this.intervaloTempoLocalizacoes = 1;
         this.respectivoIntervalo = 0;
-        this.velocidadeMediaParcialLida = 0;
-        this.distanciaPercorridaLida = 0;
-        this.respectivoIntervaloLido = 0;
-        this.intervaloTempoLocalizacoesLido = 0;
-        this.numeroIdentificacaoLido = null;
-        this.dataHoraInicioLida = null;
-        this.dataHoraFimLida = null;
-        this.descricaoCargaLida = null;
-        this.nomeMotoristaLido = null;
+        //this.velocidadeMediaParcialLida = 0;
+        //this.distanciaPercorridaLida = 0;
+        //this.respectivoIntervaloLido = 0;
+        //this.intervaloTempoLocalizacoesLido = 0;
+        //this.numeroIdentificacaoLido = null;
+        //this.dataHoraInicioLida = null;
+        //this.dataHoraFimLida = null;
+        //this.descricaoCargaLida = null;
+        //this.nomeMotoristaLido = null;
     }
 
     /**
@@ -292,6 +292,10 @@ public class Veiculo {
         this.velocidadeRecomendadaServico = velocidadeRecomendadaServico;
     }
 
+    public void setTempoDeslocamento(long tempoDeslocamento) {
+        this.tempoDeslocamento = tempoDeslocamento;
+    }
+
 
     /**
      * Atualiza os dados do veículo com a nova localização e inicie uma thread para buscar os dados do JSON criptografado e exibi-los na interface de usuário
@@ -327,7 +331,7 @@ public class Veiculo {
                 LocationData secondLastLocationData = locationDataList.get(size - 2);
 
                 if (latitude < LATITUDE_FINAL && longitude > LONGITUDE_FINAL) {
-                    tempoDeslocamento = (System.currentTimeMillis() - secondLastLocationData.getTimestamp()) / 1000;
+                    tempoDeslocamento++;
                     tempoParaDestinoFinal--;
 
                 }
