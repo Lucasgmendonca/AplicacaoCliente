@@ -71,17 +71,15 @@ public class MainActivity extends AppCompatActivity {
         JSONLeitor jsonLeitor = new JSONLeitor(new JSONLeitor.JSONLeitorCallback() {
             @Override
             public void onResult(JSONObject result) {
-                // Process the JSON data here if needed
                 try {
-                    // Get the required data from the JSON result and set it in the Veiculo instance
-                    // For example:
+                    // Obtém os dados necessários do resultado JSON e configura a instância e atributos do Veiculo
                     String numeroIdentificacaoLido = result.getString("numeroIdentificacao");
                     String dataHoraInicioLida = result.getString("dataHoraInicio");
                     String dataHoraFimLida = result.getString("dataHoraFim");
                     String descricaoCargaLida = result.getString("descricaoCarga");
                     String nomeMotoristaLido = result.getString("nomeMotorista");
 
-                    // Initialize the Veiculo instance with the obtained data
+                    // Instancializa a classe do Veiculo com os dados obtidos
                     veiculo = new Veiculo(gpsTracker);
                     veiculo.setNumeroIdentificacaoLido(numeroIdentificacaoLido);
                     veiculo.setDataHoraInicioLida(dataHoraInicioLida);
@@ -89,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     veiculo.setDescricaoCargaLida(descricaoCargaLida);
                     veiculo.setNomeMotoristaLido(nomeMotoristaLido);
 
-                    // Set the TextViews with the obtained data
+                    // Define os TextViews com os dados obtidos
                     tvNumeroIdentificacaoLido.setText(numeroIdentificacaoLido);
                     tvDataHoraInicioLida.setText(dataHoraInicioLida);
                     tvDataHoraFimLida.setText(dataHoraFimLida);
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Call lerDados to read the data once during initialization
+        // Chama lerDados para ler os dados uma vez durante a inicialização
         jsonLeitor.lerDados();
 
         // Solicita permissão de localização
