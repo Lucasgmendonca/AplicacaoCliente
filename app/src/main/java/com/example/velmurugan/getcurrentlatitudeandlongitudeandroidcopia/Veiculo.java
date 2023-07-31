@@ -60,15 +60,6 @@ public class Veiculo {
         this.tempoParaDestinoFinal = TEMPO_PARA_DESTINO_FINAL;
         this.intervaloTempoLocalizacoes = 1;
         this.respectivoIntervalo = 0;
-        //this.velocidadeMediaParcialLida = 0;
-        //this.distanciaPercorridaLida = 0;
-        //this.respectivoIntervaloLido = 0;
-        //this.intervaloTempoLocalizacoesLido = 0;
-        //this.numeroIdentificacaoLido = null;
-        //this.dataHoraInicioLida = null;
-        //this.dataHoraFimLida = null;
-        //this.descricaoCargaLida = null;
-        //this.nomeMotoristaLido = null;
     }
 
     /**
