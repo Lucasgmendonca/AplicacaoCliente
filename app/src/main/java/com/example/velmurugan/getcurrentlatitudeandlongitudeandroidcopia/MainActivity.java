@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        exibirLayoutParaInserirDados();
+        exibirLayoutParaInserirCodigo();
 
         FirebaseApp.initializeApp(this); // Inicializa o Firebase
 
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Método para exibir o novo layout para a entrada de dados da nova carga
-    private void exibirLayoutParaInserirDados() {
+    private void exibirLayoutParaInserirCodigo() {
         // Infla o layout personalizado
         View novoLayoutView = getLayoutInflater().inflate(R.layout.layout_verifica, null);
 
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 // Verifica se o código de acesso é igual ao número de identificação lido do veículo
                 if (codigoAcesso.equals(veiculo.getNumeroIdentificacaoLido())) {
                 } else {
-                    exibirLayoutParaInserirDados();
+                    exibirLayoutParaInserirCodigo();
                 }
 
                 // Feche o AlertDialog

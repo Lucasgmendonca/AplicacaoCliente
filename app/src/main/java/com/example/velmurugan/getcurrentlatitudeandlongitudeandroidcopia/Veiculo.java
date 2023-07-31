@@ -449,7 +449,7 @@ public class Veiculo {
     private double V3Cross = 1.0;
 
     /**
-     * Calcula a velocidade de reconciliação com base no tempo em que o veículo do serviço de transporte irá chegar no Destino Final
+     * Calcula a velocidade de reconciliação com base no tempo em que o veículo do serviço de transporte irá chegar no Cross Docking
      *
      * @return a velocidade de reconciliação em km/h.
      */
